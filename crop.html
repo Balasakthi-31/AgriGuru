@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Crop Recommendation - AgriGuru</title>
+  <link rel="stylesheet" href="style.css">
+   <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      width: 100%;
+      height: 100%;
+    }
+
+    body {
+      background-image: url("img/background.jpg"); /* CHANGE IMAGE PATH */
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      font-family: Arial, sans-serif;
+      color: white;
+    }
+    </style>
+</head>
+<body>
+
+  <div class="container">
+    <h1>🌱 Crop Recommendation</h1>
+    <p>Based on your location, we’ll suggest the best crops.</p>
+
+    <form id="cropForm">
+
+      <label for="season">Select Season:</label><br>
+      <select id="season" required>
+        <option value="">-- Choose Season --</option>
+        <option value="Kharif">Kharif (Monsoon)</option>
+        <option value="Rabi">Rabi (Winter)</option>
+        <option value="Zaid">Zaid (Summer)</option>
+      </select><br><br>
+
+      <label for="soil">Select Soil Type:</label><br>
+      <select id="soil" required>
+        <option value="">-- Choose Soil --</option>
+        <option value="Alluvial">Alluvial</option>
+        <option value="Black">Black</option>
+        <option value="Red">Red</option>
+        <option value="Laterite">Laterite</option>
+        <option value="Sandy">Sandy</option>
+      </select><br><br>
+
+      <button type="submit">Get Recommendations</button>
+    </form>
+
+    <div id="result" style="margin-top:20px;"></div>
+  </div>
+
+  <script>
+    const form = document.getElementById("cropForm");
+    const resultDiv = document.getElementById("result");
+
+    form.addEventListener("submit", async (e) => {
+      e.preventDefault();
+      resultDiv.innerHTML = "⏳ Fetching recommendation...";
+
+      const season = document.getElementById("season").value;
+      const soil = document.getElementById("soil").value;
+
+      const lat = localStorage.getItem("user_lat");
+      const lon = localStorage.getItem("user_lon");
+
+      if (!lat || !lon) {
+        resultDiv.innerHTML = "❌ Location not found. Please set your location first.";
+        return;
+      }
+
+      try {
+        // 1️⃣ Fetch weather
+        const weatherRes = await fetch(
+          `http://127.0.0.1:5000/weather?lat=${lat}&lon=${lon}`
+        );
+
+        if (!weatherRes.ok) {
+          throw new Error("Weather API failed");
+        }
+
+        const weatherData = await weatherRes.json();
+
+        if (!weatherData.temp) {
+          throw new Error("Temperature missing in response");
+        }
+
+        // 2️⃣ Fetch crop recommendation
+        const recommendRes = await fetch(
+          "http://127.0.0.1:5000/recommend",
+          {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+              temperature: weatherData.temp,
+              season: season,
+              soil: soil
+            })
+          }
+        );
+
+        if (!recommendRes.ok) {
+          throw new Error("Recommendation API failed");
+        }
+
+        const recData = await recommendRes.json();
+
+        if (!recData.recommended_crop) {
+          throw new Error("No crop returned");
+        }
+
+        // 3️⃣ Display result
+        resultDiv.innerHTML = `
+          <h3>🌾 Recommended Crop</h3>
+          <p><strong>${recData.recommended_crop}</strong></p>
+        `;
+
+      } catch (error) {
+        console.error(error);
+        resultDiv.innerHTML = "❌ Failed to get crop recommendations.";
+      }
+    });
+  </script>
+  <!-- Bottom Navigation -->
+            <nav class="bottom-nav">
+                  <a href="home.html">🏠<span>Home</span></a>
+                  <a href="crop.html">🌱<span>Crops</span></a>
+                  <a href="dashboard.html">📊<span>Dashboard</span></a>
+                  <a href="sell-crop.html">💰<span>Sell</span></a>
+            </nav>
+</body>
+</html>

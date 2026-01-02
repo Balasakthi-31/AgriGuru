@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <title>About Us - AgriGuru</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', sans-serif;
+            background-color: #f1f9f1;
+            position: relative;
+        }
+        
+        body::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('argi guru logo.png') no-repeat center center;
+            background-size: contain;
+            opacity: 0.07;
+            z-index: 0;
+        }
+            
+    html, body {
+      margin: 0;
+      padding: 0;
+      width: 100%;
+      height: 100%;
+    }
+
+    body {
+      background-image: url("img/background.jpg"); /* CHANGE IMAGE PATH */
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      font-family: Arial, sans-serif;
+      color: white;
+    }
+        
+        .header {
+            width: 100%;
+            padding: 10px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #eaf5ea;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            position: relative;
+            z-index: 2;
+        }
+        
+        .header img.logo {
+            height: 60px;
+        }
+        
+        .lang-btn {
+            position: relative;
+        }
+        
+        .lang-toggle {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 8px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+        
+        .lang-options {
+            display: none;
+            position: absolute;
+            top: 45px;
+            right: 0;
+            background-color: white;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            overflow: hidden;
+            z-index: 10;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            max-height: 300px;
+            overflow-y: auto;
+        }
+        
+        .lang-options button {
+            background: none;
+            border: none;
+            padding: 10px 15px;
+            width: 100%;
+            text-align: left;
+            font-size: 1em;
+            cursor: pointer;
+        }
+        
+        .lang-options button:hover {
+            background-color: #f1f1f1;
+        }
+        
+        .content {
+            position: relative;
+            z-index: 1;
+            max-width: 800px;
+            margin: 40px auto;
+            padding: 30px;
+            background-color: rgba(255, 255, 255, 0.95);
+            border-radius: 15px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        h1 {
+            text-align: center;
+            color: #2f633e;
+            font-size: 2.2em;
+            margin-bottom: 20px;
+        }
+        
+        p {
+            font-size: 1.1em;
+            color: #444;
+            line-height: 1.7;
+        }
+        
+        .back-link {
+            display: block;
+            text-align: center;
+            margin-top: 30px;
+        }
+        
+        .back-link a {
+            text-decoration: none;
+            color: white;
+            background-color: #4CAF50;
+            padding: 10px 20px;
+            border-radius: 8px;
+            font-weight: bold;
+        }
+        
+        .back-link a:hover {
+            background-color: #388e3c;
+        }
+    </style>
+</head>
+   <!-- Bottom Navigation -->
+            <nav class="bottom-nav">
+                  <a href="home.html">🏠<span>Home</span></a>
+                  
+                  <a href="crop.html">🌱<span>Crops</span></a>
+                  <a href="dashboard.html">📊<span>Dashboard</span></a>
+                  <a href="sell-crop.html">💰<span>Sell</span></a>
+            </nav>
+
+<body>
+
+    <!-- Header -->
+    <div class="header">
+        <img src="argi guru logo.png" alt="AgriGuru Logo" class="logo" />
+        <div class="lang-btn">
+            <button class="lang-toggle" onclick="toggleLanguage()">🌐 Language</button>
+            <div class="lang-options" id="langOptions">
+                <button onclick="setLanguage('en')">English</button>
+                <button onclick="setLanguage('hi')">हिन्दी</button>
+                <button onclick="setLanguage('bn')">বাংলা</button>
+                <button onclick="setLanguage('ta')">தமிழ்</button>
+                <button onclick="setLanguage('te')">తెలుగు</button>
+                <button onclick="setLanguage('gu')">ગુજરાતી</button>
+                <button onclick="setLanguage('mr')">मराठी</button>
+                <button onclick="setLanguage('kn')">ಕನ್ನಡ</button>
+                <button onclick="setLanguage('ml')">മലയാളം</button>
+                <button onclick="setLanguage('ur')">اردو</button>
+                <button onclick="setLanguage('pa')">ਪੰਜਾਬੀ</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- About Content -->
+    <div class="content">
+        <h1 data-i18n="aboutTitle">About Us</h1>
+        <p data-i18n="aboutP1">
+            AgriGuru is an AI-powered farming assistant designed to revolutionize the way farmers make decisions. We provide real-time crop recommendations, weather forecasts, market insights, and advisory services tailored to each farmer's local conditions.
+        </p>
+        <p data-i18n="aboutP2">
+            Our mission is to empower farmers with cutting-edge technology that increases productivity, reduces input costs, and promotes sustainable agricultural practices. We believe that smart agriculture is the key to ensuring food security and economic growth
+            in rural communities.
+        </p>
+        <p data-i18n="aboutP3">
+            With a user-friendly interface and support for multiple languages, AgriGuru ensures inclusivity and accessibility for farmers across diverse regions.
+        </p>
+
+        <div class="back-link">
+            <a href="home.html" data-i18n="backHome">← Back to Home</a>
+        </div>
+    </div>
+
+    <script>
+        const translations = {
+            en: {
+                aboutTitle: "About Us",
+                aboutP1: "AgriGuru is an AI-powered farming assistant designed to revolutionize the way farmers make decisions. We provide real-time crop recommendations, weather forecasts, market insights, and advisory services tailored to each farmer's local conditions.",
+                aboutP2: "Our mission is to empower farmers with cutting-edge technology that increases productivity, reduces input costs, and promotes sustainable agricultural practices. We believe that smart agriculture is the key to ensuring food security and economic growth in rural communities.",
+                aboutP3: "With a user-friendly interface and support for multiple languages, AgriGuru ensures inclusivity and accessibility for farmers across diverse regions.",
+                backHome: "← Back to Home"
+            },
+            hi: {
+                aboutTitle: "हमारे बारे में",
+                aboutP1: "AgriGuru एक एआई-संचालित कृषि सहायक है जिसे किसानों के निर्णय लेने के तरीके में क्रांति लाने के लिए डिज़ाइन किया गया है। हम रीयल-टाइम फसल सिफारिशें, मौसम पूर्वानुमान, बाज़ार की जानकारी और स्थानीय परिस्थितियों के अनुसार सलाहकार सेवाएं प्रदान करते हैं।",
+                aboutP2: "हमारा मिशन किसानों को अत्याधुनिक तकनीक के साथ सशक्त बनाना है जो उत्पादकता बढ़ाता है, लागत कम करता है, और सतत कृषि प्रथाओं को बढ़ावा देता है।",
+                aboutP3: "उपयोगकर्ता के अनुकूल इंटरफ़ेस और बहुभाषी समर्थन के साथ, AgriGuru किसानों के लिए समावेशिता और पहुंच सुनिश्चित करता है।",
+                backHome: "← होम पर लौटें"
+            },
+            bn: {
+                aboutTitle: "আমাদের সম্পর্কে",
+                aboutP1: "AgriGuru একটি AI-চালিত কৃষি সহকারী যা কৃষকদের সিদ্ধান্ত গ্রহণের প্রক্রিয়াকে রূপান্তরিত করতে ডিজাইন করা হয়েছে। আমরা রিয়েল-টাইম ফসলের পরামর্শ, আবহাওয়ার পূর্বাভাস, বাজারের অন্তর্দৃষ্টি এবং স্থানীয় পরিস্থিতির ভিত্তিতে পরামর্শ পরিষেবা প্রদান করি।",
+                aboutP2: "আমাদের লক্ষ্য হল কৃষকদের এমন প্রযুক্তির মাধ্যমে ক্ষমতায়ন করা যা উৎপাদনশীলতা বাড়ায়, খরচ কমায় এবং টেকসই কৃষিচর্চাকে উৎসাহিত করে।",
+                aboutP3: "সহজ ব্যবহারযোগ্য ইন্টারফেস এবং বহু ভাষার সহায়তার মাধ্যমে AgriGuru বিভিন্ন অঞ্চলের কৃষকদের জন্য অন্তর্ভুক্তি এবং প্রবেশযোগ্যতা নিশ্চিত করে।",
+                backHome: "← হোমে ফিরে যান"
+            },
+            ta: {
+                aboutTitle: "எங்களைப் பற்றி",
+                aboutP1: "AgriGuru என்பது விவசாயிகளை தீர்மானிக்க உதவ எய்ஐ ஆதரவு கொண்ட துணை. பயிர் பரிந்துரைகள், வானிலை தகவல்கள் மற்றும் சந்தை பரிந்துரைகளை வழங்குகிறது.",
+                aboutP2: "புதிய தொழில்நுட்பத்துடன் விவசாயிகளை அதிகாரமளிப்பதே எங்கள் நோக்கம். இது உற்பத்தித் திறனை அதிகரிக்கிறது, செலவுகளை குறைக்கிறது மற்றும் நிலைத்துறை முறைகளை ஊக்குவிக்கிறது.",
+                aboutP3: "பலமொழி ஆதரவு மற்றும் எளிதான பயன்பாட்டு இடைமுகம் மூலம், AgriGuru அனைத்து விவசாயிகளுக்கும் அணுகத்தக்கதாக இருக்கிறது.",
+                backHome: "← முகப்புக்கு திரும்ப"
+            },
+            te: {
+                aboutTitle: "మా గురించి",
+                aboutP1: "AgriGuru ఒక AI ఆధారిత వ్యవసాయ సహాయకుడు, ఇది రైతుల నిర్ణయాలను మార్చడానికి రూపకల్పన చేయబడింది. ఇది సమయోచిత పంట సిఫార్సులు, వాతావరణ సూచనలు మరియు మార్కెట్ సమాచారం ఇస్తుంది.",
+                aboutP2: "మేము రైతులను ఆధునిక సాంకేతికతతో సాధికారత కలిగించాలనుకుంటున్నాము, ఇది ఉత్పాదకతను పెంచుతుంది, ఖర్చును తగ్గిస్తుంది మరియు స్థిరమైన వ్యవసాయాన్ని ప్రోత్సహిస్తుంది.",
+                aboutP3: "బహుభాషా మద్దతుతో కూడిన వినియోగదారుడి స్నేహపూర్వక ఇంటర్‌ఫేస్‌తో, AgriGuru రైతులకు సమాన అవకాశం కల్పిస్తుంది.",
+                backHome: "← హోమ్‌కు తిరుగు"
+            },
+            gu: {
+                aboutTitle: "અમારા વિશે",
+                aboutP1: "AgriGuru એ એઆઈ આધારિત ખેતી સહાયક છે જે ખેડૂતોના નિર્ણયો લેવાના પદ્ધતિમાં ક્રાંતિ લાવવા માટે બનાવવામાં આવ્યું છે.",
+                aboutP2: "અમારું ધ્યેય છે કે ખેડૂતોને નવીન ટેક્નોલોજી દ્વારા સશક્ત બનાવવું જે ઉત્પાદકતા વધારશે અને ખર્ચ ઘટાડશે.",
+                aboutP3: "AgriGuru વિવિધ ભાષાઓના સહારે ખેડૂતો સુધી સરળતાથી પહોંચી શકે છે.",
+                backHome: "← ઘર પૃષ્ઠ પર પાછા ફરો"
+            },
+            mr: {
+                aboutTitle: "आमच्याबद्दल",
+                aboutP1: "AgriGuru हे एआय-आधारित शेती सहाय्यक आहे, जे शेतकऱ्यांचे निर्णय बदलण्यासाठी तयार केले आहे.",
+                aboutP2: "उत्पादकता वाढवणे, खर्च कमी करणे आणि शाश्वत शेतीला चालना देणे हे आमचे ध्येय आहे.",
+                aboutP3: "AgriGuru हे अनेक भाषांत उपलब्ध असून, सर्व शेतकऱ्यांना वापरण्यास सुलभ आहे.",
+                backHome: "← मुख्यपृष्ठावर परत जा"
+            },
+            kn: {
+                aboutTitle: "ನಮ್ಮ ಬಗ್ಗೆ",
+                aboutP1: "AgriGuru ಒಂದು ಎಐ ಆಧಾರಿತ ಕೃಷಿ ಸಹಾಯಕ, ಇದು ರೈತರು ಉತ್ತಮ ನಿರ್ಣಯ ತೆಗೆದುಕೊಳ್ಳಲು ಸಹಾಯ ಮಾಡುತ್ತದೆ.",
+                aboutP2: "ನಾವೆಲ್ಲರಿಗೂ ಸಮರ್ಥ ಕೃಷಿ ತಂತ್ರಜ್ಞಾನ ಒದಗಿಸಲು ಉದ್ದೇಶಿಸಿದ್ದೇವೆ.",
+                aboutP3: "ಬಾಹುಭಾಷಾ ಬೆಂಬಲದೊಂದಿಗೆ, ಎಲ್ಲ ರೈತರಿಗೂ ಉಪಯೋಗವಾಗುತ್ತದೆ.",
+                backHome: "← ಮುಖಪುಟಕ್ಕೆ ಹಿಂತಿರುಗಿ"
+            },
+            ml: {
+                aboutTitle: "ഞങ്ങളേക്കുറിച്ച്",
+                aboutP1: "AgriGuru ഒരു AI അധിഷ്ഠിത കാർഷിക സഹായിയാണ്. ഇത് വിള വിതരണങ്ങൾ, കാലാവസ്ഥ വിവരങ്ങൾ എന്നിവ നൽകുന്നു.",
+                aboutP2: "കർഷകർക്ക് പുതിയ സാങ്കേതികവിദ്യ നൽകലാണ് ഞങ്ങളുടെ ലക്ഷ്യം.",
+                aboutP3: "പലഭാഷ പിന്തുണയുള്ള എളുപ്പത്തിലുള്ള ഉപയോക്തൃ ഇന്റർഫേസ് ഉണ്ട്.",
+                backHome: "← ഹോം പേജിലേക്ക് മടങ്ങുക"
+            },
+            ur: {
+                aboutTitle: "ہمارے بارے میں",
+                aboutP1: "AgriGuru ایک AI پر مبنی زرعی معاون ہے جو کسانوں کی مدد کے لیے ڈیزائن کیا گیا ہے۔",
+                aboutP2: "ہم کسانوں کو جدید ٹیکنالوجی سے طاقتور بنانا چاہتے ہیں۔",
+                aboutP3: "بہزبانی انٹرفیس کے ذریعے تمام کسانوں تک رسائی حاصل کی جاتی ہے۔",
+                backHome: "← ہوم پر واپس جائیں"
+            },
+            pa: {
+                aboutTitle: "ਸਾਡੇ ਬਾਰੇ",
+                aboutP1: "AgriGuru ਇੱਕ ਏਆਈ ਅਧਾਰਤ ਖੇਤੀ ਸਹਾਇਕ ਹੈ ਜੋ ਕਿਸਾਨਾਂ ਦੀ ਮਦਦ ਲਈ ਬਣਾਇਆ ਗਿਆ ਹੈ।",
+                aboutP2: "ਸਾਡਾ ਮਿਸ਼ਨ ਕਿਸਾਨਾਂ ਨੂੰ ਤਕਨਾਲੋਜੀ ਨਾਲ ਮਜਬੂਤ ਕਰਨਾ ਹੈ।",
+                aboutP3: "ਬਹੁਭਾਸ਼ਾਈ ਸਹਿਯੋਗ ਨਾਲ, ਇਹ ਸਾਰੇ ਕਿਸਾਨਾਂ ਲਈ ਸੁਗਮ ਹੈ।",
+                backHome: "← ਮੁੱਖ ਸਫ਼ੇ 'ਤੇ ਵਾਪਸ ਜਾਓ"
+            }
+        };
+
+        function toggleLanguage() {
+            const menu = document.getElementById("langOptions");
+            menu.style.display = menu.style.display === "block" ? "none" : "block";
+        }
+
+        function setLanguage(lang) {
+            const elements = document.querySelectorAll("[data-i18n]");
+            elements.forEach(el => {
+                const key = el.getAttribute("data-i18n");
+                if (translations[lang] && translations[lang][key]) {
+                    el.textContent = translations[lang][key];
+                }
+            });
+            document.getElementById("langOptions").style.display = "none";
+        }
+
+        document.addEventListener("click", function(e) {
+            const langMenu = document.getElementById("langOptions");
+            if (!e.target.closest('.lang-btn')) {
+                langMenu.style.display = "none";
+            }
+        });
+    </script>
+
+</body>
+
+</html>

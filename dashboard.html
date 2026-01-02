@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>My Crop Dashboard - AgriGuru</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      width: 100%;
+      height: 100%;
+    }
+
+    body {
+      background-image: url("img/background.jpg"); /* CHANGE IMAGE PATH */
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      font-family: Arial, sans-serif;
+      color: white;
+    }
+    </style>
+
+</head>
+   
+<body>
+  <div class="container">
+    <h1>🌾 Crop Dashboard</h1>
+    <p>Select the information you'd like to view:</p>
+
+    <button onclick="goTo('weather')">⛅ Weather Info</button>
+    <button onclick="goTo('pest')">🪲 Pest Detection</button>
+    <button onclick="window.location.href='market.html'">💹 Market Prices</button>
+
+    <div id="section" style="margin-top: 20px;"></div>
+  </div>
+
+  <script>
+    function goTo(section) {
+      const lat = localStorage.getItem("user_lat");
+      const lon = localStorage.getItem("user_lon");
+      const output = document.getElementById("section");
+
+      if (section === "weather") {
+        fetch(`http://127.0.0.1:5000/weather?lat=${lat}&lon=${lon}`)
+          .then(res => res.json())
+          .then(data => {
+            output.innerHTML = `<h3>⛅ Weather</h3><p>Temperature: ${data.temp}°C<br>Rain: ${data.rain}%</p>`;
+          });
+      }
+
+      if (section === "pest") {
+        output.innerHTML = `
+          <h3>🪲 Pest Detection</h3>
+          <input type="file" accept="image/*" id="pestImage"><br><br>
+          <button onclick="uploadPest()">Upload and Detect</button>
+          <div id="pestResult" style="margin-top:10px;"></div>
+        `;
+      }
+    }
+
+    function uploadPest() {
+      const fileInput = document.getElementById('pestImage');
+      const file = fileInput.files[0];
+      const formData = new FormData();
+      formData.append("image", file);
+
+      const resultBox = document.getElementById("pestResult");
+
+      fetch("http://127.0.0.1:5000/detect", {
+        method: "POST",
+        body: formData
+      })
+      .then(res => res.json())
+      .then(data => {
+        resultBox.innerHTML = `
+          <p>Prediction: ${data.pestName}<br>Advice: ${data.solution}</p>
+        `;
+      });
+    }
+  </script>
+  <!-- Bottom Navigation -->
+            <nav class="bottom-nav">
+                  <a href="home.html">🏠<span>Home</span></a>
+                  <a href="crop.html">🌱<span>Crops</span></a>
+                  <a href="dashboard.html">📊<span>Dashboard</span></a>
+                  <a href="sell-crop.html">💰<span>Sell</span></a>
+            </nav>
+</body>
+</html>
